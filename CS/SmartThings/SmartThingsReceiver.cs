@@ -160,7 +160,7 @@ namespace SmartThingsListener
             {
                 response = client.Dispatch(request);
                 //ErrorLog.Notice("Response = {0}\n", response.ContentString);
-                string pattern = ".*?url\":\"(.*?)\"}";
+                string pattern = ".*?\"url\":\"(.*?)\"}";
                 var r = new Regex(pattern, RegexOptions.IgnoreCase);
                 if (response.ContentString != null)
                 {
