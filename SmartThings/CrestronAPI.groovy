@@ -182,20 +182,21 @@ void updateThermostat() {
 
 
 private SendUpdate(String path) {
-
     def pollParams = [
-        uri: "http://ccontrol.sytanek.com",
+        uri: "http://something.mycrestron.com:9050",
         path: "${path}"
         ]
-
+	log.debug "PreHTTPGET"        
 	httpGet(pollParams)
 }
 
-def switchesHandler(evt) {
+def switchesHandler(evt) {	
 	if (evt.value == "on") {
+    	log.debug "Something on"
 		SendUpdate("/${evt.deviceId}/on")
 	} 
     else if (evt.value == "off") {
+    	log.debug "Something off"
 		SendUpdate("/${evt.deviceId}/off")
 	}
 }
@@ -229,7 +230,7 @@ def thermostatsHandler(evt) {
 def presenceHandler(evt) {
 	if (evt.value == "present") {
 		log.debug "${presence.label ?: presence.name} has arrived at the ${location}"
-    	sendPush("${presence.label ?: presence.name} has arrived at the ${location}")
+    	//sendPush("${presence.label ?: presence.name} has arrived at the ${location}")
 	} else if (evt.value == "not present") {
 		log.debug "${presence.label ?: presence.name} has left the ${location}"
         def url = "http://192.168.1.90:9050/Serial/1/SomeoneIsHome"
@@ -238,7 +239,7 @@ def presenceHandler(evt) {
             	log.debug "Sending Off Status to Crestron Failed"
             }
         }      
-    	sendPush("${presence.label ?: presence.name} has left the ${location}")
+    	//sendPush("${presence.label ?: presence.name} has left the ${location}")
 	}
 }
 
