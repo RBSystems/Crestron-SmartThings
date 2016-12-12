@@ -6,7 +6,7 @@
 definition(
     name: "CrestronAPI",
     namespace: "sytanek",
-    author: "Brannon Bowden",
+    author: "sytanek",
     description: "Send Message to Crestron System",
     category: "My Apps",
     iconUrl: "https://s3.amazonaws.com/smartapp-icons/Meta/text_presence.png",
